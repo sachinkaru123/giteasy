@@ -1,0 +1,50 @@
+version: 2
+
+project_name: giteasy
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: giteasy
+    main: ./main.go
+    binary: giteasy
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+archives:
+  - id: giteasy-archive
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    # Produces filenames matching install.sh / install.ps1 expectations:
+    # giteasy_linux_amd64.tar.gz, giteasy_windows_amd64.zip, etc.
+    name_template: >-
+      {{ .ProjectName }}_{{ .Os }}_{{ .Arch }}
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+
+release:
+  github:
+    owner: yourname
+    name: giteasy

@@ -1,0 +1,16 @@
+# Binaries
+/giteasy
+/giteasy.exe
+/dist/
+
+# Go
+*.test
+*.out
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
