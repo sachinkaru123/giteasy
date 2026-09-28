@@ -51,3 +51,28 @@ func enableVT() bool {
 	setOutCP.Call(65001)
 	return true
 }
+
+type coord struct{ X, Y int16 }
+type smallRect struct{ Left, Top, Right, Bottom int16 }
+type consoleInfo struct {
+	Size       coord
+	CursorPos  coord
+	Attributes uint16
+	Window     smallRect
+	MaxSize    coord
+}
+
+// termSize returns the visible console rows and columns (24x80 if unknown).
+func termSize() (rows, cols int) {
+	var info consoleInfo
+	r, _, _ := kernel32.NewProc("GetConsoleScreenBufferInfo").Call(os.Stdout.Fd(), uintptr(unsafe.Pointer(&info)))
+	if r == 0 {
+		return 24, 80
+	}
+	rows = int(info.Window.Bottom-info.Window.Top) + 1
+	cols = int(info.Window.Right-info.Window.Left) + 1
+	if rows <= 0 || cols <= 0 {
+		return 24, 80
+	}
+	return rows, cols
+}

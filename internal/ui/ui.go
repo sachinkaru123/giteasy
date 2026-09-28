@@ -50,7 +50,13 @@ func style(code, s string) string {
 //	│  giteasy › Merge │
 //	╰──────────────────╯
 func Header(parts ...string) {
-	text := strings.Join(append([]string{"giteasy"}, parts...), " › ")
+	text := strings.Join(append([]string{`	
+ ███  ███ █████ █████  ███   ████ █   █ 
+█      █    █   █     █   █ █      █ █  
+█  ██  █    █   ████  █████  ███    █   
+█   █  █    █   █     █   █     █   █   
+ ███  ███   █   █████ █   █ ████    █   
+`}, parts...), " › ")
 	w := utf8.RuneCountInString(text) + 4
 	bar := strings.Repeat("─", w)
 	fmt.Println()
@@ -138,9 +144,18 @@ func selectArrows(title string, options []string, cur int) (int, bool) {
 		restore()
 	}
 
+	rows, cols := termSize()
 	visible := len(options)
 	if visible > maxVisible {
 		visible = maxVisible
+	}
+	// The whole menu (title + items + hint) must fit on screen, otherwise
+	// the cursor can't move back up far enough to redraw it in place.
+	if room := rows - 3; visible > room {
+		visible = room
+	}
+	if visible < 1 {
+		visible = 1
 	}
 	lines := visible + 2 // title + items + hint
 	offset := 0
@@ -160,13 +175,13 @@ func selectArrows(title string, options []string, cur int) (int, bool) {
 		first = false
 
 		var sb strings.Builder
-		sb.WriteString("\r\033[K" + style("1;36", "?") + " " + style("1", title) + "\r\n")
+		sb.WriteString("\r\033[K" + style("1;36", "?") + " " + style("1", trunc(title, cols-3)) + "\r\n")
 		for i := offset; i < offset+visible; i++ {
 			sb.WriteString("\r\033[K")
 			if i == cur {
-				sb.WriteString(style("1;36", "❯ "+options[i]))
+				sb.WriteString(style("1;36", "❯ "+trunc(options[i], cols-8)))
 			} else {
-				sb.WriteString("  " + options[i])
+				sb.WriteString("  " + trunc(options[i], cols-8))
 			}
 			if i == offset && offset > 0 {
 				sb.WriteString(style("2", "  ↑"))
@@ -176,7 +191,7 @@ func selectArrows(title string, options []string, cur int) (int, bool) {
 			}
 			sb.WriteString("\r\n")
 		}
-		sb.WriteString("\r\033[K" + style("2", "  ↑/↓ move · enter select · ctrl+c cancel") + "\r\n")
+		sb.WriteString("\r\033[K" + style("2", trunc("  ↑/↓ move · enter select · ctrl+c cancel", cols-1)) + "\r\n")
 		fmt.Print(sb.String())
 
 		n, err := os.Stdin.Read(buf)
@@ -209,6 +224,19 @@ func selectArrows(title string, options []string, cur int) (int, bool) {
 			os.Exit(130)
 		}
 	}
+}
+
+// trunc shortens s to at most w runes so a line never wraps (a wrapped
+// line would throw off the in-place redraw).
+func trunc(s string, w int) string {
+	if w < 2 {
+		w = 2
+	}
+	r := []rune(s)
+	if len(r) <= w {
+		return s
+	}
+	return string(r[:w-1]) + "…"
 }
 
 func selectNumbered(title string, options []string) (int, string) {

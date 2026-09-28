@@ -3,6 +3,7 @@
 package ui
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"strings"
@@ -31,3 +32,14 @@ func makeRaw() (func(), error) {
 
 // enableVT reports whether ANSI escape sequences are usable (always, on unix).
 func enableVT() bool { return true }
+
+// termSize returns the terminal's rows and columns (24x80 if unknown).
+func termSize() (rows, cols int) {
+	out, err := stty("size")
+	if err == nil {
+		if n, _ := fmt.Sscanf(out, "%d %d", &rows, &cols); n == 2 && rows > 0 && cols > 0 {
+			return rows, cols
+		}
+	}
+	return 24, 80
+}
