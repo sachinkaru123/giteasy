@@ -1,7 +1,7 @@
 # giteasy installer for Windows.
 #
 # Usage (PowerShell):
-#   irm https://raw.githubusercontent.com/sachinkaru123/giteasy/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/<owner>/giteasy/main/install.ps1 | iex
 #
 # Downloads the correct prebuilt binary from the latest GitHub Release
 # and installs it onto your user PATH. No Go required.

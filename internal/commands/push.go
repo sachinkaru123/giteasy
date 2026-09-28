@@ -8,6 +8,7 @@ import (
 // Push pushes the current branch, setting upstream automatically if missing.
 func Push() {
 	requireRepo()
+	ui.Header("Push")
 	branch, err := git.CurrentBranch()
 	mustNoError(err, "getting current branch")
 

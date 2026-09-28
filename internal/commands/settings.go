@@ -10,6 +10,7 @@ import (
 
 // Settings shows the settings menu and loops until the user backs out.
 func Settings() {
+	ui.Header("Settings")
 	cfg, err := config.Load()
 	mustNoError(err, "loading config")
 

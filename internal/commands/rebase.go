@@ -11,6 +11,7 @@ import (
 // is always against the latest remote state, not a stale local copy.
 func Rebase() {
 	requireRepo()
+	ui.Header("Rebase")
 	if !git.IsWorkingTreeClean() {
 		ui.Error("Working tree has uncommitted changes. Commit or stash them first.")
 		return

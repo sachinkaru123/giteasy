@@ -13,6 +13,7 @@ import (
 // locally, check it out, and push it to origin so local/remote stay in sync.
 func NewBranch() {
 	requireRepo()
+	ui.Header("New Branch")
 	cfg, err := config.Load()
 	mustNoError(err, "loading config")
 	resolveDefaultBranches(cfg)

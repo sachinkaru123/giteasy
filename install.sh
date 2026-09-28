@@ -2,7 +2,7 @@
 # giteasy installer for Linux and macOS.
 #
 # Usage:
-#   curl -sSL https://raw.githubusercontent.com/sachinkaru123/giteasy/main/install.sh | bash
+#   curl -sSL https://raw.githubusercontent.com/<owner>/giteasy/main/install.sh | bash
 #
 # Downloads the correct prebuilt binary for your OS/architecture from the
 # latest GitHub Release and installs it onto your PATH. No Go required.

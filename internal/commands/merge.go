@@ -12,6 +12,7 @@ import (
 // (this guard is on by default, toggle it off in Settings).
 func Merge() {
 	requireRepo()
+	ui.Header("Merge")
 	if !git.IsWorkingTreeClean() {
 		ui.Error("Working tree has uncommitted changes. Commit or stash them first.")
 		return

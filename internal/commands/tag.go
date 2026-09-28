@@ -11,6 +11,7 @@ import (
 // and editable, and on Enter creates + pushes the tag.
 func NewTag() {
 	requireRepo()
+	ui.Header("New Tag")
 
 	latest, err := git.LatestTag()
 	mustNoError(err, "reading tags")

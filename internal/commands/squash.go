@@ -13,6 +13,7 @@ import (
 // since the current branch diverged from main/dev, into a single commit.
 func Squash() {
 	requireRepo()
+	ui.Header("Squash")
 	cfg, err := config.Load()
 	mustNoError(err, "loading config")
 	resolveDefaultBranches(cfg)

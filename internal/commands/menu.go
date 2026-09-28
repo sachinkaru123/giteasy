@@ -16,6 +16,7 @@ func RunMenu() {
 		"Settings",
 		"Exit",
 	}
+	ui.Header()
 	for {
 		idx, _ := ui.Select("What do you want to do?", options)
 		switch idx {

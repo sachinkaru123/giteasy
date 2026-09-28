@@ -9,6 +9,7 @@ import (
 // reset mode (soft/mixed/hard), and choose the target point to reset to.
 func Reset() {
 	requireRepo()
+	ui.Header("Reset")
 
 	current, err := git.CurrentBranch()
 	mustNoError(err, "getting current branch")

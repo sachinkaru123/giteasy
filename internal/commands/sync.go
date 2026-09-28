@@ -9,6 +9,7 @@ import (
 // and fast-forwards the current branch if it has an upstream.
 func Sync() {
 	requireRepo()
+	ui.Header("Sync")
 	ui.Info("Fetching from origin ...")
 	if err := git.FetchAll(); err != nil {
 		ui.Error("Fetch failed: %v", err)
