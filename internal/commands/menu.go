@@ -1,6 +1,6 @@
 package commands
 
-import "github.com/yourname/giteasy/internal/ui"
+import "github.com/sachinkaru123/giteasy/internal/ui"
 
 // RunMenu shows the top-level interactive menu (bare `giteasy`).
 func RunMenu() {

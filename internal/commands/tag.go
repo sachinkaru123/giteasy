@@ -3,8 +3,8 @@ package commands
 import (
 	"strings"
 
-	"github.com/yourname/giteasy/internal/git"
-	"github.com/yourname/giteasy/internal/ui"
+	"github.com/sachinkaru123/giteasy/internal/git"
+	"github.com/sachinkaru123/giteasy/internal/ui"
 )
 
 // NewTag shows the latest tag, suggests the next patch version pre-filled

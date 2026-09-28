@@ -10,7 +10,7 @@
 set -euo pipefail
 
 # ---- Configure this before publishing your repo -----------------------
-REPO="yourname/giteasy"   # <-- change to "your-github-username/giteasy"
+REPO="sachinkaru123/giteasy"   # <-- change to "your-github-username/giteasy"
 # -------------------------------------------------------------------------
 
 BINARY_NAME="giteasy"

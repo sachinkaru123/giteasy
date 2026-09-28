@@ -1,7 +1,7 @@
 # giteasy installer for Windows.
 #
 # Usage (PowerShell):
-#   irm https://raw.githubusercontent.com/<owner>/giteasy/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/sachinkaru123/giteasy/main/install.ps1 | iex
 #
 # Downloads the correct prebuilt binary from the latest GitHub Release
 # and installs it onto your user PATH. No Go required.
@@ -9,7 +9,7 @@
 $ErrorActionPreference = "Stop"
 
 # ---- Configure this before publishing your repo -----------------------
-$Repo = "yourname/giteasy"   # <-- change to "your-github-username/giteasy"
+$Repo = "sachinkaru123/giteasy"   # <-- change to "your-github-username/giteasy"
 # -------------------------------------------------------------------------
 
 $BinaryName = "giteasy.exe"

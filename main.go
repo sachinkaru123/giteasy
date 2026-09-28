@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/yourname/giteasy/internal/commands"
+	"github.com/sachinkaru123/giteasy/internal/commands"
 )
 
 // version is set at build time via -ldflags "-X main.version=..." by

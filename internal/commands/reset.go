@@ -1,8 +1,8 @@
 package commands
 
 import (
-	"github.com/yourname/giteasy/internal/git"
-	"github.com/yourname/giteasy/internal/ui"
+	"github.com/sachinkaru123/giteasy/internal/git"
+	"github.com/sachinkaru123/giteasy/internal/ui"
 )
 
 // Reset lets the user reset a branch: choose which branch, choose the

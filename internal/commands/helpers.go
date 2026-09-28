@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/yourname/giteasy/internal/config"
-	"github.com/yourname/giteasy/internal/git"
-	"github.com/yourname/giteasy/internal/ui"
+	"github.com/sachinkaru123/giteasy/internal/config"
+	"github.com/sachinkaru123/giteasy/internal/git"
+	"github.com/sachinkaru123/giteasy/internal/ui"
 )
 
 // requireRepo exits with a friendly message if git isn't installed or

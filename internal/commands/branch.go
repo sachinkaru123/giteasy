@@ -3,9 +3,9 @@ package commands
 import (
 	"strings"
 
-	"github.com/yourname/giteasy/internal/config"
-	"github.com/yourname/giteasy/internal/git"
-	"github.com/yourname/giteasy/internal/ui"
+	"github.com/sachinkaru123/giteasy/internal/config"
+	"github.com/sachinkaru123/giteasy/internal/git"
+	"github.com/sachinkaru123/giteasy/internal/ui"
 )
 
 // NewBranch runs the "create branch" flow: pick a base branch, name the
