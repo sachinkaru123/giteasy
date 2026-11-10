@@ -69,6 +69,11 @@ func Merge() {
 	}
 	ui.Success("Merged %q into %q and pushed.", source, target)
 
+	if isProtectedBranch(source, cfg) {
+		ui.Info("Keeping %q (it's a primary/secondary branch).", source)
+		return
+	}
+
 	deleteBranch := false
 	switch cfg.Merge.DeleteAfterMerge {
 	case config.DeleteAlways:
@@ -88,4 +93,10 @@ func Merge() {
 		}
 		ui.Success("Deleted branch %q locally and on origin.", source)
 	}
+}
+
+// isProtectedBranch reports whether name is one of the repo's default
+// branches, which must never be deleted after a merge.
+func isProtectedBranch(name string, cfg *config.Config) bool {
+	return name == cfg.DefaultBranches.Primary || name == cfg.DefaultBranches.Secondary
 }
